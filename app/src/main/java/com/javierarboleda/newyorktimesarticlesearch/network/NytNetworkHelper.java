@@ -23,10 +23,10 @@ public class NytNetworkHelper {
         void onResponseResult(NytResponse nytResponse);
     }
 
-    public static void testRetrofit(final Context context) {
+    public static void callNytApi(final Context context) {
+
         Gson gson = new GsonBuilder()
                 .serializeNulls()
-                .excludeFieldsWithoutExposeAnnotation()
                 .create();
 
         Retrofit retrofit = new Retrofit.Builder()
@@ -36,24 +36,28 @@ public class NytNetworkHelper {
 
         NytServiceInterface nytService = retrofit.create(NytServiceInterface.class);
 
-        Call<NytResponse> call = nytService.getResponse("35f523ef394540c9b7c155ef41ac6483");
-
+        Call<NytResponse> call = nytService.getResponse(
+                "35f523ef394540c9b7c155ef41ac6483",
+                null,
+                null,
+                null,
+                null,
+                null
+                );
         call.enqueue(new retrofit2.Callback<NytResponse>() {
             @Override
-            public void onResponse(Call<NytResponse> call, retrofit2.Response<NytResponse> response) {
-                int statusCode = response.code();
+            public void onResponse(Call<NytResponse> call,
+                                   retrofit2.Response<NytResponse> response) {
 
                 NytResponse nytResponse = response.body();
 
                 ((Callback) context).onResponseResult(nytResponse);
-
-                Log.d(TAG, nytResponse.getResponse().getDocs().get(0).getSnippet());
             }
 
             @Override
             public void onFailure(Call<NytResponse> call, Throwable t) {
                 // Log error here since request failed
-                Log.d(TAG, "Error in onFailure");
+                Log.d(TAG, "Error in onFailure: " + t.getMessage());
             }
         });
     }

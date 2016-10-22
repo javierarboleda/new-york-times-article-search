@@ -14,6 +14,11 @@ public interface NytServiceInterface {
 
     @GET("articlesearch.json")
     Call<NytResponse> getResponse(
-            @Query(NytApiUtil.API_KEY_PARAM) String apiKey
+            @Query(NytApiUtil.API_KEY_PARAM) String apiKey,
+            @Query(NytApiUtil.QUERY_PARAM) String query,
+            @Query(NytApiUtil.BEGIN_DATE_PARAM) String beginDate,
+            @Query(NytApiUtil.END_DATE) String endDate,
+            @Query(NytApiUtil.SORT_PARAM) String sort,
+            @Query(NytApiUtil.PAGE_PARAM) String page
     );
 }
