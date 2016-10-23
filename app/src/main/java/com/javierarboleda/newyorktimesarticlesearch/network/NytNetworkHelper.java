@@ -8,6 +8,8 @@ import com.google.gson.GsonBuilder;
 import com.javierarboleda.newyorktimesarticlesearch.models.NytResponse;
 import com.javierarboleda.newyorktimesarticlesearch.utils.NytApiUtil;
 
+import java.util.HashSet;
+
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -24,7 +26,18 @@ public class NytNetworkHelper {
     }
 
     public static void callNytApi(final Context context, String query, String beginDate,
-                      String endDate, String sort, String page) {
+                        String endDate, String sort, HashSet<String> newsDeskValues, String page) {
+
+        String filterQuery = null;
+
+        if (newsDeskValues != null && newsDeskValues.size() > 0) {
+            StringBuffer str = new StringBuffer("news_desk:(");
+            for (String string : newsDeskValues) {
+                str.append("\"" + string + "\" ");
+            }
+            str.append(")");
+            filterQuery = str.toString().replace(" ", "%20").replace("&", "%26");
+        }
 
         Gson gson = new GsonBuilder()
                 .serializeNulls()
@@ -43,6 +56,7 @@ public class NytNetworkHelper {
                 beginDate,
                 endDate,
                 sort,
+                filterQuery,
                 page
                 );
         call.enqueue(new retrofit2.Callback<NytResponse>() {

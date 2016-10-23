@@ -16,6 +16,7 @@ public class NytApiUtil {
     public final static String END_DATE = "end_date";
     public final static String SORT_PARAM = "sort";
     public final static String PAGE_PARAM = "page";
+    public final static String FILTER_QUERY_PARAM = "fq";
 
     // Values
     public final static String SORT_NEWEST = "newest";

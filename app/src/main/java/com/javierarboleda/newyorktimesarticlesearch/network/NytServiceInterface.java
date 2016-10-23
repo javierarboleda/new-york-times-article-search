@@ -19,6 +19,7 @@ public interface NytServiceInterface {
             @Query(NytApiUtil.BEGIN_DATE_PARAM) String beginDate,
             @Query(NytApiUtil.END_DATE) String endDate,
             @Query(NytApiUtil.SORT_PARAM) String sort,
+            @Query(NytApiUtil.FILTER_QUERY_PARAM) String filterQuery,
             @Query(NytApiUtil.PAGE_PARAM) String page
     );
 }

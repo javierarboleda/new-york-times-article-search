@@ -1,8 +1,10 @@
 package com.javierarboleda.newyorktimesarticlesearch.activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -20,8 +22,10 @@ import com.javierarboleda.newyorktimesarticlesearch.models.Article;
 import com.javierarboleda.newyorktimesarticlesearch.models.Doc;
 import com.javierarboleda.newyorktimesarticlesearch.models.NytResponse;
 import com.javierarboleda.newyorktimesarticlesearch.network.NytNetworkHelper;
+import com.javierarboleda.newyorktimesarticlesearch.utils.AppConstants;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 /**
  * Created on 10/18/16.
@@ -54,11 +58,19 @@ public class NewsStreamActivity extends AppCompatActivity implements NytNetworkH
 
     private void callNytApi(String page, String thisquery) {
 
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+
         String query = thisquery;
-        String beginDate = null;
+        String beginDate = sharedPref.getString(AppConstants.BEGIN_DATE_QUERY_KEY_NAME, null);
         String endDate = null;
-        String sort = null;
-        NytNetworkHelper.callNytApi(this, query, beginDate, endDate, sort, page);
+        String sort = sharedPref.getBoolean(AppConstants.SORT_NEWEST_KEY_NAME, true)
+                        ? "newest" : "oldest";
+        HashSet<String> newsDeskValues = (HashSet<String>) sharedPref
+                .getStringSet(AppConstants.NEWS_DESK_VALUES_KEY_NAME, null);
+
+
+
+        NytNetworkHelper.callNytApi(this, query, beginDate, endDate, sort, newsDeskValues, page);
     }
 
     private void setUpRecyclerView() {
