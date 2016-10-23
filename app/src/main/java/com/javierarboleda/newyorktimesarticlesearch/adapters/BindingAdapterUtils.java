@@ -12,9 +12,12 @@ import com.squareup.picasso.Picasso;
 public class BindingAdapterUtils {
     @BindingAdapter({"bind:imageUrl"})
     public static void loadImage(ImageView view, String url) {
-        Picasso.with(view.getContext())
-                .load(url)
-                .placeholder(R.drawable.backdrop_placeholder_w780)
-                .into(view);
+
+        if (!url.equals("http://www.nytimes.com/null")) {
+            Picasso.with(view.getContext())
+                    .load(url)
+                    .placeholder(R.drawable.backdrop_placeholder_w780)
+                    .into(view);
+        }
     }
 }

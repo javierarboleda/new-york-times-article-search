@@ -23,7 +23,8 @@ public class NytNetworkHelper {
         void onResponseResult(NytResponse nytResponse);
     }
 
-    public static void callNytApi(final Context context) {
+    public static void callNytApi(final Context context, String query, String beginDate,
+                      String endDate, String sort, String page) {
 
         Gson gson = new GsonBuilder()
                 .serializeNulls()
@@ -38,11 +39,11 @@ public class NytNetworkHelper {
 
         Call<NytResponse> call = nytService.getResponse(
                 "35f523ef394540c9b7c155ef41ac6483",
-                null,
-                null,
-                null,
-                null,
-                null
+                query,
+                beginDate,
+                endDate,
+                sort,
+                page
                 );
         call.enqueue(new retrofit2.Callback<NytResponse>() {
             @Override

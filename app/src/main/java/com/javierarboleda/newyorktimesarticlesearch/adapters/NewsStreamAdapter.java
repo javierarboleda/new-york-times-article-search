@@ -1,14 +1,18 @@
 package com.javierarboleda.newyorktimesarticlesearch.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import com.javierarboleda.newyorktimesarticlesearch.R;
+import com.javierarboleda.newyorktimesarticlesearch.activities.ArticleActivity;
 import com.javierarboleda.newyorktimesarticlesearch.databinding.ItemArticleBinding;
 import com.javierarboleda.newyorktimesarticlesearch.models.Article;
+import com.javierarboleda.newyorktimesarticlesearch.utils.AppConstants;
 
 import java.util.ArrayList;
 
@@ -31,7 +35,6 @@ public class NewsStreamAdapter extends RecyclerView.Adapter<NewsStreamAdapter.Ne
     }
 
     @Override
-
     public NewsStreamViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         ItemArticleBinding viewDataBinding =
@@ -48,6 +51,7 @@ public class NewsStreamAdapter extends RecyclerView.Adapter<NewsStreamAdapter.Ne
 
         final Article article = mArticles.get(position);
         holder.binding.setArticle(article);
+        holder.data = article;
     }
 
     @Override
@@ -55,14 +59,23 @@ public class NewsStreamAdapter extends RecyclerView.Adapter<NewsStreamAdapter.Ne
         return mArticles.size();
     }
 
-    public class NewsStreamViewHolder extends RecyclerView.ViewHolder {
+    public class NewsStreamViewHolder extends RecyclerView.ViewHolder implements
+            View.OnClickListener{
+
         public ItemArticleBinding binding;
+        public Article data;
 
         public NewsStreamViewHolder(ItemArticleBinding viewDataBinding) {
             super(viewDataBinding.getRoot());
             binding = viewDataBinding;
+            viewDataBinding.getRoot().setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            Intent intent = new Intent(mContext, ArticleActivity.class);
+            intent.putExtra(AppConstants.ARTICLE_KEY_NAME, data);
+            mContext.startActivity(intent);
         }
     }
-
-
 }

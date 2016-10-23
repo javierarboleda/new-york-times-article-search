@@ -1,5 +1,15 @@
 <resources>
-    <string name="app_name">New York Times Article Search</string>
+    <string name="app_name">NYT Article Search</string>
     <string name="hint">Enter search query</string>
     <string name="Search">Search</string>
+    <string name="menuItemSearch">Search</string>
+    <string name="menuItemSettings">Settings</string>
+    <string name="beginDate">Begin Date</string>
+    <string name="sortOrder">Sort Order</string>
+    <string name="newsDeskValues">News Desk Values</string>
+    <string name="arts">Arts</string>
+    <string name="fashionAndStyle"><![CDATA[Fashion & Style]]></string>
+    <string name="sports">Sports</string>
+    <string name="save">Save</string>
+    <string name="clickToAddDate">Click to add date</string>
 </resources>

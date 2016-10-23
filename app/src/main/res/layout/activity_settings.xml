@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.javierarboleda.newyorktimesarticlesearch.activities.SettingsActivity">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:minHeight="?attr/actionBarSize"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            app:titleTextColor="@android:color/white"
+            android:background="?attr/colorPrimary"
+            android:theme="@style/ToolbarTheme">
+        </android.support.v7.widget.Toolbar>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvBeginDateLabel"
+            android:layout_below="@id/toolbar"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="16dp"
+            android:text="@string/beginDate"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvSortOrder"
+            android:layout_below="@+id/tvBeginDateLabel"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="50dp"
+            android:text="@string/sortOrder"/>
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinner"
+            android:spinnerMode="dropdown"
+            android:layout_above="@+id/textView"
+            android:layout_alignLeft="@+id/btnSave"
+            android:layout_alignStart="@+id/btnSave"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/newsDeskValues"
+            android:id="@+id/textView"
+            android:layout_below="@+id/tvSortOrder"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="67dp"/>
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/arts"
+            android:id="@+id/checkBox"
+            android:layout_alignBottom="@+id/textView"
+            android:layout_toRightOf="@+id/textView"
+            android:layout_toEndOf="@+id/textView"
+            android:layout_marginLeft="35dp"
+            android:layout_marginStart="35dp"
+            android:checked="false"/>
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fashionAndStyle"
+            android:id="@+id/checkBox2"
+            android:layout_below="@+id/checkBox"
+            android:layout_alignLeft="@+id/checkBox"
+            android:layout_alignStart="@+id/checkBox"
+            android:checked="false"/>
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sports"
+            android:id="@+id/checkBox3"
+            android:layout_below="@+id/checkBox2"
+            android:layout_alignLeft="@+id/checkBox2"
+            android:layout_alignStart="@+id/checkBox2"
+            android:checked="false"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/save"
+            android:id="@+id/btnSave"
+            android:layout_below="@+id/checkBox3"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="101dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/clickToAddDate"
+            android:id="@+id/tvBeginDate"
+            android:layout_alignTop="@+id/tvBeginDateLabel"
+            android:layout_alignLeft="@+id/spinner"
+            android:layout_alignStart="@+id/spinner"
+            android:onClick="pickBeginDate"
+            />
+
+    </RelativeLayout>
+</layout>
