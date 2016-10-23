@@ -46,7 +46,7 @@ GIFs created with [AZ Screen Recorder](https://play.google.com/store/apps/detail
 
 ## Notes
 
-Only challenges were learning how to use DataBinding, Retrofit, and chasing after multiple bugs!
+Only challenges were learning how to use DataBinding, Retrofit, and chasing after multiple bugs! I'm still experiencing the occasional erratic behavior with searching and results, so I will still need a bit more time to fix all bugs there. But getting good results and performance most of the time.
 
 ## Open-source libraries used
 
